@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#050d1f">
+  <title>🎂 Happy Birthday BVON</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:wght@300;400;500;600&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ NỀN ============ -->
+  <div class="bg-deep"></div>
+  <div class="moon" id="moon"></div>
+  <div class="stars" id="stars"></div>
+  <div class="shooting-stars" id="shootingStars"></div>
+  <div class="clouds">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="cloud cloud3"></div>
+  </div>
+  <div class="floating-objects" id="floatingObjects"></div>
+  <canvas id="fireworks"></canvas>
+
+ <!-- ============ MÀN 0: COUNTDOWN ============ -->
+<section class="screen screen-countdown active" id="screenCountdown">
+  <div class="countdown-wrap">
+    <div class="countdown-number enter" id="countdownNumber">3</div>
+    <div class="countdown-hint" id="countdownHint">Chuẩn bị</div>
+    <div class="countdown-particles" id="countdownParticles"></div>
+  </div>
+</section>
+
+  <!-- ============ MÀN 1: CHỌN HỘP QUÀ ============ -->
+  <section class="screen screen-gifts" id="screenGifts">
+    <div class="gifts-header">
+      <div class="gifts-sub">A GIFT FOR YOU</div>
+      <div class="gifts-title">Chọn một món quà</div>
+      <div class="gifts-note">Hãy chọn hộp quà bạn thích nhất</div>
+    </div>
+
+    <div class="gifts-row">
+      <div class="gift-box" data-gift="1" onclick="chooseGift(1)">
+        <div class="gift-lid">
+          <div class="gift-bow">
+            <div class="bow-loop bow-left"></div>
+            <div class="bow-loop bow-right"></div>
+            <div class="bow-center"></div>
+          </div>
+        </div>
+        <div class="gift-body">
+          <div class="gift-ribbon-v"></div>
+          <div class="gift-ribbon-h"></div>
+          <div class="gift-shine"></div>
+          <div class="gift-mark">I</div>
+        </div>
+        <div class="gift-shadow"></div>
+      </div>
+
+      <div class="gift-box gift-box-mid" data-gift="2" onclick="chooseGift(2)">
+        <div class="gift-lid">
+          <div class="gift-bow">
+            <div class="bow-loop bow-left"></div>
+            <div class="bow-loop bow-right"></div>
+            <div class="bow-center"></div>
+          </div>
+        </div>
+        <div class="gift-body">
+          <div class="gift-ribbon-v"></div>
+          <div class="gift-ribbon-h"></div>
+          <div class="gift-shine"></div>
+          <div class="gift-mark">II</div>
+        </div>
+        <div class="gift-shadow"></div>
+      </div>
+
+      <div class="gift-box" data-gift="3" onclick="chooseGift(3)">
+        <div class="gift-lid">
+          <div class="gift-bow">
+            <div class="bow-loop bow-left"></div>
+            <div class="bow-loop bow-right"></div>
+            <div class="bow-center"></div>
+          </div>
+        </div>
+        <div class="gift-body">
+          <div class="gift-ribbon-v"></div>
+          <div class="gift-ribbon-h"></div>
+          <div class="gift-shine"></div>
+          <div class="gift-mark">III</div>
+        </div>
+        <div class="gift-shadow"></div>
+      </div>
+    </div>
+
+    <div class="tap-hint">
+      <span class="tap-dot"></span>
+      <span>Nhấn vào hộp quà bạn chọn</span>
+      <span class="tap-dot"></span>
+    </div>
+  </section>
+
+  <!-- ============ MÀN 2: BÁNH RƠI ============ -->
+  <section class="screen screen-cake" id="screenCake">
+    <div class="cake-header">
+      <div class="cake-sub">A CAKE FOR YOU</div>
+      <div class="cake-title">Chiếc bánh sinh nhật</div>
+    </div>
+
+    <div class="cake-wrap" id="cakeWrap">
+      <div class="moon-glow"></div>
+      <div class="cake" id="cake">
+        <div class="plate"></div>
+
+        <div class="cake-piece layer-bot" data-piece="1">
+          <div class="piece-body"></div>
+        </div>
+
+        <div class="cake-piece layer-mid" data-piece="2">
+          <div class="piece-body">
+            <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+            <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+          </div>
+        </div>
+
+        <div class="cake-piece layer-top" data-piece="3">
+          <div class="piece-body">
+            <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+            <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+          </div>
+        </div>
+
+        <div class="cake-piece layer-cream" data-piece="4">
+          <div class="cream-body">
+            <div class="cream-wave"></div>
+            <div class="cream-wave"></div>
+            <div class="cream-wave"></div>
+            <div class="cream-wave"></div>
+            <div class="cream-wave"></div>
+          </div>
+        </div>
+
+        <div class="cake-piece layer-candle" data-piece="5">
+          <div class="candle">
+            <div class="wick"></div>
+            <div class="flame" id="flame">
+              <div class="flame-inner"></div>
+              <div class="flame-glow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cake-hint" id="cakeHint">
+      <span>Đang chuẩn bị...</span>
+    </div>
+
+    <button class="btn-blow hidden" id="btnBlow" onclick="blowCandle()">
+      <span>Thổi nến &amp; Ước nguyện</span>
+    </button>
+
+    <div class="mic-hint hidden" id="micHint">
+      <div class="mic-icon">🎤</div>
+      <div class="mic-text">Hoặc thổi vào micro</div>
+      <div class="mic-status" id="micStatus"></div>
+    </div>
+  </section>
+
+  <!-- ============ MÀN 3: SLIDESHOW ============ -->
+  <section class="screen screen-gallery" id="screenGallery">
+    <div class="gallery-header">
+      <div class="gallery-sub">MEMORIES</div>
+      <div class="gallery-title">Cùng nhìn lại một vài khoảng khắc</div>
+    </div>
+
+    <div class="slideshow" id="slideshow">
+      <div class="slides-track" id="slidesTrack"></div>
+      <button class="slide-nav slide-prev" onclick="prevSlide()">‹</button>
+      <button class="slide-nav slide-next" onclick="nextSlide()">›</button>
+      <div class="slide-indicators" id="slideIndicators"></div>
+    </div>
+
+    <button class="btn-next btn-next-gallery" id="btnNextGallery" onclick="goToLetter()">
+      <span>Đi tiếp</span>
+      <span class="btn-arrow">→</span>
+    </button>
+  </section>
+
+  <!-- ============ MÀN 4: LÁ THƯ ============ -->
+  <section class="screen screen-letter" id="screenLetter">
+    <div class="letter-header">
+      <div class="letter-sub">A LETTER FOR YOU</div>
+      <div class="letter-title">Lá thư nhỏ</div>
+    </div>
+
+    <div class="envelope-wrap" id="envelopeWrap" onclick="openEnvelope()">
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+
+        <div class="letter-paper" id="letterPaper">
+          <div class="letter-ornament-top">❦</div>
+
+          <h3 class="letter-greeting">Gửi BVON,</h3>
+
+          <!-- ✏️ SỬA Ở ĐÂY: Lời chúc của bạn -->
+          <div class="letter-body">
+            <p>Chúc mừng sinh nhật nha! 🎉</p>
+            <p>.............................................................................................................</p>
+            <p>.............................................................................................................</p>
+            <p>.............................................................................................................</p>
+            <p class="letter-wish">Hết :)))). 💙</p>
+          </div>
+
+          <div class="letter-sign">
+            <span class="sign-line"></span>
+            <span class="sign-text">Nguyễn Đình Thiên</span>
+          </div>
+
+          <div class="letter-ornament-bottom">❦</div>
+        </div>
+
+        <div class="envelope-front"></div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-seal" id="envelopeSeal">B</div>
+      </div>
+
+      <div class="envelope-hint" id="envelopeHint">Nhấn để mở thư</div>
+    </div>
+
+    <button class="btn-next hidden" id="btnNextLetter" onclick="goToEnding()">
+      <span>Đi tiếp →</span>
+    </button>
+  </section>
+
+  <!-- ============ MÀN 5: KẾT ============ -->
+<section class="screen screen-ending" id="screenEnding">
+
+  <!-- 🌟 Container sao bay -->
+  <div class="ending-stars" id="endingStars"></div>
+
+  <div class="ending-content">
+    <div class="ending-line" id="endingLine1">
+        Chúc mừng sinh nhật Bảo Vương, hãy có một ngày thật vui vẻ, thật hạnh phúc và tràn đầy năng lượng.
+    </div>
+    <div class="ending-line ending-sign" id="endingLine3">
+      — Happy Birthday, BVON —
+                30/09
+    </div>
+  </div>
+
+  <button class="btn-replay" id="btnReplay" onclick="replayAll()">
+    <span>↻ Xem lại</span>
+  </button>
+</section>
+
+  <!-- ============ AUDIO ============ -->
+  <audio id="audioAmbient" loop>
+    <source src="music/ambient.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="audioBuild" loop>
+    <source src="music/build.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="audioEmotional" loop>
+    <source src="music/emotional.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="audioVoice">
+    <source src="music/voice-wish.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ============ POPUP ============ -->
+  <div class="wish-popup" id="wishPopup">
+    <div class="wish-content">
+      <div class="wish-star">✦</div>
+      <div class="wish-text">Điều ước của bạn<br>sẽ thành sự thật</div>
+      <div class="wish-star">✦</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
